@@ -1,0 +1,30 @@
+[
+  {
+    "user": "hello bit",
+    "agent": "Hmm\u2026 interesting! I\u2019ll remember that."
+  },
+  {
+    "user": "how's your day",
+    "agent": "Hmm\u2026 interesting! I\u2019ll remember that."
+  },
+  {
+    "user": "what's the weather",
+    "agent": "Hmm\u2026 interesting! I\u2019ll remember that."
+  },
+  {
+    "user": "agent",
+    "agent": "Hmm\u2026 interesting! I\u2019ll remember that."
+  },
+  {
+    "user": "name",
+    "agent": "My name is SmartBot, your personal AI agent!"
+  },
+  {
+    "user": "how are you ",
+    "agent": "I\u2019m great, learning new things every day!"
+  },
+  {
+    "user": "how are u",
+    "agent": "Hmm\u2026 interesting! I\u2019ll remember that."
+  }
+]
