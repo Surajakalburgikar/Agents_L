@@ -1,0 +1,50 @@
+import requests
+import json
+import random
+
+def get_weather(city_name):
+    # Convert city name to coordinates
+    geo_url = f"https://geocoding-api.open-meteo.com/v1/search?name={city_name}&count=1"
+    geo_response = requests.get(geo_url)
+
+    if geo_response.status_code != 200:
+        return "Failed to get location details."
+
+    geo_data = geo_response.json()
+    if "results" not in geo_data or len(geo_data["results"]) == 0:
+        return "City not found."
+
+    lat = geo_data["results"][0]["latitude"]
+    lon = geo_data["results"][0]["longitude"]
+
+    # Fetch weather data
+    weather_url = f"https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&current_weather=true"
+    weather_response = requests.get(weather_url)
+
+    if weather_response.status_code != 200:
+        return "Weather data not available."
+
+    weather_data = weather_response.json()
+    current = weather_data["current_weather"]
+    return f"Temperature: {current['temperature']}°C, Wind: {current['windspeed']} km/h."
+
+def agent_loop():
+    print("Hi! I’m your action agent. Type 'bye' to exit.")
+    while True:
+        user_input = input("You: ").strip().lower()
+
+        if user_input == "bye":
+            print("Agent: Goodbye, friend!")
+            break
+        elif "weather" in user_input:
+            city = input("Enter city name: ")
+            print("Agent:", get_weather(city))
+        else:
+            responses = [
+                "Still learning to do more things!",
+                "Hmm, that’s something I’ll learn soon.",
+                "Let me think about that..."
+            ]
+            print("Agent:", random.choice(responses))
+
+agent_loop()
